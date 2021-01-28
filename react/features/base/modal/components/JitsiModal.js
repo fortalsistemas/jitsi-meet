@@ -1,7 +1,7 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { KeyboardAvoidingView, SafeAreaView } from 'react-native';
+import { KeyboardAvoidingView, SafeAreaView, BackHandler } from 'react-native';
 
 import { ColorSchemeRegistry } from '../../color-scheme';
 import { HeaderWithNavigation, SlidingView } from '../../react';
@@ -90,6 +90,25 @@ class JitsiModal extends PureComponent<Props> {
         super(props);
 
         this._onRequestClose = this._onRequestClose.bind(this);
+        this._onBackPress = this._onBackPress.bind(this);
+    }
+
+    /**
+     * Initialize the BackHandler listener.
+     *
+     * @returns {boolean}
+     */
+    componentDidMount(){
+        BackHandler.addEventListener('hardwareBackPress', ()=> this._onBackPress());
+    }
+
+    /**
+     * BackPress closing the Modal.
+     *
+     * @returns {boolean}
+     */
+    _onBackPress(){
+        return this._onRequestClose();
     }
 
     /**
@@ -125,6 +144,7 @@ class JitsiModal extends PureComponent<Props> {
     }
 
     _onRequestClose: () => boolean;
+    _onBackPress: () => boolean;
 
     /**
      * Callback to be invoked when the SlidingView requests closing.
