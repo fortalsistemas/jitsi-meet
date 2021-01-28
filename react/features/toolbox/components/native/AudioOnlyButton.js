@@ -1,6 +1,7 @@
 // @flow
 
 import { toggleAudioOnly } from '../../../base/audio-only';
+import { AUDIO_ONLY, getFeatureFlag } from '../../../base/flags';
 import { translate } from '../../../base/i18n';
 import { IconAudioOnly, IconAudioOnlyOff } from '../../../base/icons';
 import { connect } from '../../../base/redux';
@@ -67,9 +68,11 @@ class AudioOnlyButton extends AbstractButton<Props, *> {
  */
 function _mapStateToProps(state): Object {
     const { enabled: audioOnly } = state['features/base/audio-only'];
+    const visible = getFeatureFlag(state, AUDIO_ONLY, true);
 
     return {
-        _audioOnly: Boolean(audioOnly)
+        _audioOnly: Boolean(audioOnly),
+        visible
     };
 }
 
