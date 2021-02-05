@@ -8,6 +8,7 @@ import { getLocalParticipant, PARTICIPANT_ROLE } from '../../base/participants';
 import { connect } from '../../base/redux';
 import { AbstractButton, type AbstractButtonProps } from '../../base/toolbox/components';
 import { MuteEveryoneDialog } from '../../remote-video-menu/components';
+import { MUTE_EVERYONE, getFeatureFlag } from '../../base/flags';
 
 type Props = AbstractButtonProps & {
 
@@ -65,11 +66,12 @@ function _mapStateToProps(state: Object, ownProps: Props) {
     const isModerator = localParticipant.role === PARTICIPANT_ROLE.MODERATOR;
     const { visible } = ownProps;
     const { disableRemoteMute } = state['features/base/config'];
+    const visibleButton = getFeatureFlag(state, MUTE_EVERYONE, false);
 
     return {
         isModerator,
         localParticipantId: localParticipant.id,
-        visible: visible && isModerator && !disableRemoteMute
+        visible: false//visible && isModerator && !disableRemoteMute && visibleButton
     };
 }
 

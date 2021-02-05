@@ -7,6 +7,24 @@
 export const ADD_PEOPLE_ENABLED = 'add-people.enabled';
 
 /**
+ * Flag indicating if audio-only functionality should be enabled.
+ * Default: enabled (true).
+ */
+export const AUDIO_ONLY = 'audio-only.enabled';
+
+/**
+ * Flag indicating if share screen functionality should be enabled.
+ * Default: enabled (true).
+ */
+export const SHARE_SCREEN = 'share-screen.enabled';
+
+/**
+ * Flag indicating if mute every one functionality should be enabled.
+ * Default: enabled (false).
+ */
+export const MUTE_EVERYONE = 'mute-everyone.enabled';
+
+/**
  * Flag indicating if calendar integration should be enabled.
  * Default: enabled (true) on Android, auto-detected on iOS.
  */

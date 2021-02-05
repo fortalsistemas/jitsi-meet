@@ -7,6 +7,7 @@ import { IconShareDesktop } from '../../../base/icons';
 import { connect } from '../../../base/redux';
 import { AbstractButton, type AbstractButtonProps } from '../../../base/toolbox/components';
 import { toggleScreensharing, isLocalVideoTrackDesktop } from '../../../base/tracks';
+import { SHARE_SCREEN, getFeatureFlag } from '../../../base/flags';
 
 /**
  * The type of the React {@code Component} props of {@link ScreenSharingButton}.
@@ -68,9 +69,10 @@ class ScreenSharingButton extends AbstractButton<Props, *> {
  * }}
  */
 function _mapStateToProps(state): Object {
+    const visible = getFeatureFlag(state, SHARE_SCREEN, true);
     return {
         _screensharing: isLocalVideoTrackDesktop(state),
-        visible: Platform.OS === 'android'
+        visible: (visible && Platform.OS === 'android')
     };
 }
 
