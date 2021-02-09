@@ -18,7 +18,7 @@
 package org.jitsi.meet.sdk;
 
 import android.app.Activity;
-
+import org.jitsi.meet.sdk.log.JitsiMeetLogger;
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler;
 
 /**
@@ -60,6 +60,7 @@ class DefaultHardwareBackBtnHandlerImpl implements DefaultHardwareBackBtnHandler
         // Practically, it's not possible. Fortunately, the documentation of
         // Activity#onBackPressed() specifies that "[t]he default implementation
         // simply finishes the current activity,"
-        activity.finish();
+        
+        //activity.finish();
     }
 }
